@@ -33,3 +33,10 @@ jobs:
       with:
         name: Package
         path: staging
+    - name: Upload to gdrive
+      uses: adityak74/google-drive-upload-git-action@main
+      with:
+        credentials: ${{ secrets.credentials }}
+        filename: "archive.zip"
+        folderId: ${{ secrets.folderId }}
+        overwrite: "true" 
