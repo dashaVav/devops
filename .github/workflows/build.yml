@@ -34,7 +34,7 @@ jobs:
       uses: adityak74/google-drive-upload-git-action@main
       with:
         credentials: ${{ secrets.credentials }}
-        filename: staging
+        filename: "target/devops-1.0-SNAPSHOT.jar"
         folderId: ${{ secrets.folderId }}
         overwrite: "true" 
         
