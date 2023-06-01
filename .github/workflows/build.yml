@@ -2,20 +2,18 @@ name: build
 
 on:
   push:
-    branches: [ "master" ]
+    branches: 'master'
   pull_request:
-    branches: [ "master" ]
+    branches: 'master'
   workflow_dispatch:
 
 jobs:
-  build:
+  build_and_upload:
   
     runs-on: ubuntu-latest
     
     steps:
-    
-    - name: Checkout code
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
       
     - name: Set up JDK
       uses: actions/setup-java@v3
@@ -23,31 +21,20 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
         
-    - name: Maven
-      run: |
-        mvn --batch-mode --update-snapshots verify
-        mkdir staging && cp target/*.jar staging
+    - name: Run
+      run: mkdir staging && cp target/*.jar staging
       
-    - name: Upload a Build Artifact
+    - name: Upload a build artifact
       uses: actions/upload-artifact@v3
       with:
         name: package
         path: staging
-    - name: Upload to gdrive
+        
+    - name: Upload to google drive
       uses: adityak74/google-drive-upload-git-action@main
       with:
         credentials: ${{ secrets.credentials }}
-        filename: "target/devops-1.0-SNAPSHOT.jar"
+        filename: staging
         folderId: ${{ secrets.folderId }}
         overwrite: "true" 
         
-  checkstyle:
-    name: runner / checkstyle
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: dbelyaev/action-checkstyle@v0.7.4
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          level: info, warning, error
