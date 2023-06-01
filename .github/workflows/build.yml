@@ -42,7 +42,7 @@ jobs:
       uses: adityak74/google-drive-upload-git-action@main
       with:
         credentials: ${{ secrets.credentials }}
-        filename: "package.zip"
+        filename: "package_$(date +%s).zip"
         folderId: ${{ secrets.folderId }}
         overwrite: "true" 
         
