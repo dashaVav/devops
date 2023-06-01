@@ -3,6 +3,12 @@ package calculator;
 
 /** класс работает как с комплексными, как и с действительными числами */
 public class ComplexNumber {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ComplexNumber complexNumber)) return false;
+        return real == complexNumber.getReal() && imag == complexNumber.getImag();
+    }
 
     /** действительная часть числа */
     private double real;

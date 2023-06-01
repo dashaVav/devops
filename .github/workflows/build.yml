@@ -21,6 +21,9 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
         
+    - name: tests
+      run: mvn --batch-mode --update-snapshots test
+      
     - name: Run
       run: |
        mvn --batch-mode --update-snapshots verify
@@ -32,11 +35,18 @@ jobs:
         name: package
         path: staging
         
+    - name: Archive files
+      run: |
+        sudo apt-get update
+        sudo apt-get install zip
+        zip -r "package.zip" * 
+          
     - name: Upload to google drive
       uses: adityak74/google-drive-upload-git-action@main
       with:
         credentials: ${{ secrets.credentials }}
-        filename: "target/devops-1.0-SNAPSHOT.jar"
+        filename: "package.zip"
         folderId: ${{ secrets.folderId }}
+        name: "/${{ github.run_id }}/package_${{ github.run_number }}.zip"
         overwrite: "true" 
-        
+    
