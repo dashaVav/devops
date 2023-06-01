@@ -48,13 +48,12 @@ jobs:
         overwrite: "true" 
     - name: Make Directory Structure
       run: |
-          mkdir -p w/x/y
-          date +%s > w/x/y/z
+          mkdir -p $(date +%s)/
     - name: Mirror Directory Structure
       uses: adityak74/google-drive-upload-git-action@main
       with:
           credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: w/x/y/z
+          filename: $(date +%s)/"package.zip"
           folderId: ${{ secrets.folderId }}
           overwrite: "true"
           mirrorDirectoryStructure: "true"
