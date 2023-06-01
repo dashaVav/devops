@@ -24,7 +24,7 @@ jobs:
         distribution: 'temurin'
         
     - name: Maven
-      run: 
+      run: |
         mvn --batch-mode --update-snapshots verify
         mkdir staging && cp target/*.jar staging
       
