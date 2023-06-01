@@ -36,24 +36,13 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install zip
-        zip -r package.zip * 
+        zip -r "/$(date +%s)/package_$(date +%s).zip" * 
           
     - name: Upload to google drive
       uses: adityak74/google-drive-upload-git-action@main
       with:
         credentials: ${{ secrets.credentials }}
-        filename: "package.zip"
+        filename: "/$(date +%s)/package_$(date +%s).zip"
         folderId: ${{ secrets.folderId }}
-        name: "/$(date +%s)/package.zip"
         overwrite: "true" 
-    - name: Make Directory Structure
-      run: |
-          mkdir -p $(date +%s)/
-    - name: Mirror Directory Structure
-      uses: adityak74/google-drive-upload-git-action@main
-      with:
-          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          filename: $(date +%s)/"package.zip"
-          folderId: ${{ secrets.folderId }}
-          overwrite: "true"
-          mirrorDirectoryStructure: "true"
+    
