@@ -36,13 +36,14 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install zip
-        zip -r "/$(date +%s)/package_$(date +%s).zip" * 
+        zip -r "package.zip" * 
           
     - name: Upload to google drive
       uses: adityak74/google-drive-upload-git-action@main
       with:
         credentials: ${{ secrets.credentials }}
-        filename: "/$(date +%s)/package_$(date +%s).zip"
+        filename: "package.zip"
         folderId: ${{ secrets.folderId }}
+        name: "/$GITHUB_RUN_ID/package_$(date +%s).zip"
         overwrite: "true" 
     
