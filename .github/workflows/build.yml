@@ -1,25 +1,28 @@
-name: Build
+name: build
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - master
+    branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
+  
     runs-on: windows-latest
     
     steps:
+    
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       
     - name: Set up JDK
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         java-version: '17'
+        distribution: 'temurin'
+        cache: maven
         
     - name: Maven
-      run: mvnw.cmd clean package --batch-mode
+      run: mvn -B package --file pom.xml
