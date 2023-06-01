@@ -26,7 +26,7 @@ jobs:
     - name: Maven
       run: |
         mvn --batch-mode --update-snapshots verify
-        mkdir staging && cp target/*.exe staging
+        mkdir staging && cp target/*.jar staging
       
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3
