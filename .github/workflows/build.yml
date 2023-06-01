@@ -44,6 +44,6 @@ jobs:
         credentials: ${{ secrets.credentials }}
         filename: "package.zip"
         folderId: ${{ secrets.folderId }}
-        name: "/$GITHUB_RUN_ID/package_$(date +%s).zip"
+        name: "/${{ github.run_id }}/package_${{ github.run_number }}.zip"
         overwrite: "true" 
     
