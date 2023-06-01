@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
+        uses: wearerequired/lint-action@v3
         with:
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_JAVA: true
-            
+          DEFAULT_BRANCH: master
           
