@@ -8,24 +8,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-  
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
-    
+  
     steps:
-    
-    - uses: actions/checkout@v3
-      
-    - name: Set up JDK
-      uses: actions/setup-java@v3
-      with:
-        java-version: '19'
-        distribution: 'temurin'
-        
-    - name: Check style 
-      uses: dbelyaev/action-checkstyle@v0.7.4
-      with:
-        github_token: ${{ secrets.github_token }}
-        reporter: github-check
-        level: error
-        fail_on_error: true
+      - uses: actions/checkout@v2
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_JAVA: true
+            
+          
