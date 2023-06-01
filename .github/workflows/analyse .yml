@@ -1,0 +1,36 @@
+name: analyse_code
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - uses: actions/checkout@v3
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '19'
+        distribution: 'temurin'
+        
+    - name: Analyse 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: mvn -B verify sonar:sonar -Dsonar.projectKey=dashaVav_devops -Dsonar.organization=dashaVav-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=./target/site/jacoco/jacoco.xml
+   
+    - name: analyse
+      uses: dbelyaev/action-checkstyle@v0.7.4
+      with:
+        github_token: ${{ secrets.github_token }}
+        reporter: github-pr-review
+        level: warning
