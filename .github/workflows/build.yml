@@ -21,6 +21,9 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
         
+    - name: tests
+      run: mvn --batch-mode --update-snapshots test
+      
     - name: Run
       run: |
        mvn --batch-mode --update-snapshots verify
