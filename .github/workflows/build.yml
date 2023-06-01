@@ -22,7 +22,9 @@ jobs:
         distribution: 'temurin'
         
     - name: Run
-      run: mkdir staging && cp target/*.jar staging
+      run: |
+       mvn --batch-mode --update-snapshots verify
+       mkdir staging && cp target/*.jar staging
       
     - name: Upload a build artifact
       uses: actions/upload-artifact@v3
