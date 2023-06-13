@@ -23,11 +23,11 @@ jobs:
         distribution: 'temurin'
         
     - name: tests
-      run: mvn --batch-mode --update-snapshots test
+      run: mvn --batch-mode --update-snapshots test verify
       
     - name: Run
       run: |
-       mvn --batch-mode --update-snapshots verify
+       mvn --batch-mode --update-snapshots -DskipTests=true verify
        mkdir staging && cp target/*.jar staging
       
 #     - name: Upload a build artifact
