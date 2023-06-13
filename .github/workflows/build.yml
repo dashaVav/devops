@@ -46,18 +46,20 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: package
+          path: staging
           
 #       - name: Archive files
 #         run: |
 #           sudo apt-get update
 #           sudo apt-get install zip
 #           zip -r "package.zip" * 
-          
+      - run: ls -la
+      
       - name: Upload to google drive
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.credentials }}
-          filename: "staging/*.jar"
+          filename: "staging/package.jar"
           folderId: ${{ secrets.folderId }}
           name: "/${{ github.run_id }}/package_${{ github.run_number }}.zip"
           overwrite: "true" 
