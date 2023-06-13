@@ -1,4 +1,4 @@
-name: build
+name: pipline
 
 on:
   push:
@@ -54,7 +54,7 @@ jobs:
         path: staging
         retention-days: 7
       
-  send:
+  upload:
       needs: build
       
       runs-on: ubuntu-latest
