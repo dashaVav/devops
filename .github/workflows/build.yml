@@ -46,7 +46,6 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: package
-          path: staging
           
 #       - name: Archive files
 #         run: |
