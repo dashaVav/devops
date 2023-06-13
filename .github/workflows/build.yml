@@ -30,18 +30,23 @@ jobs:
     - name: Create artefact
       run: mkdir staging && cp target/*.jar staging
       
+    - name: Upload a build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: package
+        path: staging
+        retention-days: 7
+      
   send:
       needs: build
       
       runs-on: ubuntu-latest
       
       steps:
-      - name: Upload a build artifact
-        uses: actions/upload-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
           name: package
-          path: staging
-        
+          
 #       - name: Archive files
 #         run: |
 #           sudo apt-get update
