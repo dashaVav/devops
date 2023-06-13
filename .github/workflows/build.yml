@@ -58,8 +58,8 @@ jobs:
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.credentials }}
-          filename: "staging/package.jar"
+          filename: devops-1.0-SNAPSHOT.jar
           folderId: ${{ secrets.folderId }}
-          name: "/${{ github.run_id }}/package_${{ github.run_number }}.zip"
+          name: "/${{ github.run_id }}/package_${{ github.run_number }}.jar"
           overwrite: "true" 
     
