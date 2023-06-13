@@ -26,11 +26,13 @@ public class MatrixTests {
 
     @Test
     void matrixAsStrTest() {
-        String expectedResult = """
-                2,000000 5,000000 8,000000\s
-                2,000000 5,000000 8,000000\s
-                2,000000 5,000000 8,000000\s
-                """;
+        String expectedResult = String.format("""
+                %f %f %f\s
+                %f %f %f\s
+                %f %f %f\s
+                """, 2.000000, 5.000000, 8.000000,
+                2.000000, 5.000000, 8.000000,
+                2.000000, 5.000000, 8.000000);
 
         String result = underTest.matrixAsStr();
 

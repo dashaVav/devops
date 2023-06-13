@@ -73,7 +73,7 @@ public class ComplexNumberTests {
 
     @Test
     void trigonometricFormTest() {
-        String expectedResult = "2,236068 * (cos(63,434949) + i * sin(63,434949))";
+        String expectedResult = String.format("%f * (cos(%f) + i * sin(%f))", 2.236068, 63.434949, 63.434949);
 
         String result = underTest.trigonometricForm();
 
@@ -82,7 +82,7 @@ public class ComplexNumberTests {
 
     @Test
     void algebraicFormTest() {
-        String expectedResult = "1,000000+2,000000i";
+        String expectedResult = String.format("%f+%fi", 1.000000, 2.000000);
 
         String result = underTest.algebraicForm();
 
