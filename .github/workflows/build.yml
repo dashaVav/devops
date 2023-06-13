@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - uses: actions/setup-java@v3
+      
       - name: Lint
         uses: github/super-linter@v5
         env:
