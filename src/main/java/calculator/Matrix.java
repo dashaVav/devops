@@ -29,7 +29,7 @@ public class Matrix{
     /**
      * @return матрику как строку
      */
-    StringBuilder MatrixAsStr() {
+    String matrixAsStr() {
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < row; i++){
             for (ComplexNumber n : matrix.get(i)) {
@@ -37,7 +37,7 @@ public class Matrix{
             }
             str.append('\n');
         }
-        return str;
+        return str.toString();
     }
 
     /**

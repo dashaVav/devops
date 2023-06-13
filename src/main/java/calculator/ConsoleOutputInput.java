@@ -105,12 +105,12 @@ public class ConsoleOutputInput {
         int n = (new Scanner(System.in)).nextInt();
         System.out.println("Результат:");
         switch (n) {
-            case (1) -> System.out.println(mtrx.MatrixAsStr());
-            case (2) -> System.out.println(mtrx.mulNumber(new ComplexNumber(inputNumber())).MatrixAsStr());
-            case (3) -> System.out.println(mtrx.addMatrix(inputMatrix()).MatrixAsStr());
-            case (4) -> System.out.println(mtrx.decrMatrix(inputMatrix()).MatrixAsStr());
-            case (5) -> System.out.println(mtrx.mulMatrix(inputMatrix()).MatrixAsStr());
-            case (6) -> System.out.println(mtrx.transposedMatrix().MatrixAsStr());
+            case (1) -> System.out.println(mtrx.matrixAsStr());
+            case (2) -> System.out.println(mtrx.mulNumber(new ComplexNumber(inputNumber())).matrixAsStr());
+            case (3) -> System.out.println(mtrx.addMatrix(inputMatrix()).matrixAsStr());
+            case (4) -> System.out.println(mtrx.decrMatrix(inputMatrix()).matrixAsStr());
+            case (5) -> System.out.println(mtrx.mulMatrix(inputMatrix()).matrixAsStr());
+            case (6) -> System.out.println(mtrx.transposedMatrix().matrixAsStr());
             case (7) -> System.out.println(mtrx.det().algebraicForm());
             default -> System.out.println("Команда не найдена!");
         }
