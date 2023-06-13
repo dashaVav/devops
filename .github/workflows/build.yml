@@ -19,6 +19,7 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: lab_1
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
  
   build:
