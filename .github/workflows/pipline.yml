@@ -30,6 +30,18 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    
+    - name: Send text message to telegram 
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            Repository: ${{ github.repository }}
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            
     - uses: actions/checkout@v3
       
     - name: Set up jdk 19
@@ -75,17 +87,12 @@ jobs:
           name: "/${{ github.run_id }}/package_${{ github.run_number }}.jar"
           overwrite: "true" 
           
-      - name: Send to telegram 
+      - name: Send file to telegram 
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           document: devops-1.0-SNAPSHOT.jar
-          message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            Repository: ${{ github.repository }}
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
             
   docker:
   
