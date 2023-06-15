@@ -120,6 +120,17 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
-    
+          
+
+        
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+      - name: docker-compose
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+      - run: docker run ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
       
     
