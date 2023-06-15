@@ -121,18 +121,11 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
           
-  pre-deploy:
-    runs-on: self-hosted
-    needs: build
-    steps:
-      - name: Stop and remove containers, networks
-        run: docker-compose down
-      - name: Remove unused data
-        run: docker system prune -a -f
+
         
   deploy:
     runs-on: self-hosted
-    needs: pre-deploy
+    needs: build
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
