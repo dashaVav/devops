@@ -10,7 +10,12 @@ public class ConsoleOutputInput {
                 Выбери с чем ты хочешь работать:
                 1 - Комплексные числа
                 2 - Матрицы""");
-        int n = (new Scanner(System.in)).nextInt();
+
+//        int n = (new Scanner(System.in)).nextInt();
+
+        int n = 1;
+        System.out.println(1);
+
         if (n == 1) {
             this.ComplexNumber();
         }
@@ -27,7 +32,10 @@ public class ConsoleOutputInput {
      */
     private String inputNumber(){
         System.out.println("Введи число вида a+bi/a/bi:");
-        return (new Scanner(System.in)).nextLine();
+//        return (new Scanner(System.in)).nextLine();
+
+        System.out.println("1+2i");
+        return "1+2i";
     }
 
     /**
@@ -46,7 +54,11 @@ public class ConsoleOutputInput {
             7 - вывести в тригонометрическом виде
             8 - вывести в алгебраическом виде
             """);
-        int n = (new Scanner(System.in)).nextInt();
+//        int n = (new Scanner(System.in)).nextInt();
+
+        int n = 8;
+        System.out.println(8);
+
         System.out.println("Результат:");
         switch (n) {
             case (1) -> System.out.println(new ComplexNumber(number.getReal()).algebraicForm());
@@ -105,12 +117,12 @@ public class ConsoleOutputInput {
         int n = (new Scanner(System.in)).nextInt();
         System.out.println("Результат:");
         switch (n) {
-            case (1) -> System.out.println(mtrx.MatrixAsStr());
-            case (2) -> System.out.println(mtrx.mulNumber(new ComplexNumber(inputNumber())).MatrixAsStr());
-            case (3) -> System.out.println(mtrx.addMatrix(inputMatrix()).MatrixAsStr());
-            case (4) -> System.out.println(mtrx.decrMatrix(inputMatrix()).MatrixAsStr());
-            case (5) -> System.out.println(mtrx.mulMatrix(inputMatrix()).MatrixAsStr());
-            case (6) -> System.out.println(mtrx.transposedMatrix().MatrixAsStr());
+            case (1) -> System.out.println(mtrx.matrixAsStr());
+            case (2) -> System.out.println(mtrx.mulNumber(new ComplexNumber(inputNumber())).matrixAsStr());
+            case (3) -> System.out.println(mtrx.addMatrix(inputMatrix()).matrixAsStr());
+            case (4) -> System.out.println(mtrx.decrMatrix(inputMatrix()).matrixAsStr());
+            case (5) -> System.out.println(mtrx.mulMatrix(inputMatrix()).matrixAsStr());
+            case (6) -> System.out.println(mtrx.transposedMatrix().matrixAsStr());
             case (7) -> System.out.println(mtrx.det().algebraicForm());
             default -> System.out.println("Команда не найдена!");
         }
