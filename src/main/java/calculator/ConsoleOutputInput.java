@@ -10,7 +10,12 @@ public class ConsoleOutputInput {
                 Выбери с чем ты хочешь работать:
                 1 - Комплексные числа
                 2 - Матрицы""");
-        int n = (new Scanner(System.in)).nextInt();
+
+//        int n = (new Scanner(System.in)).nextInt();
+
+        int n = 1;
+        System.out.println(1);
+
         if (n == 1) {
             this.ComplexNumber();
         }
@@ -27,7 +32,10 @@ public class ConsoleOutputInput {
      */
     private String inputNumber(){
         System.out.println("Введи число вида a+bi/a/bi:");
-        return (new Scanner(System.in)).nextLine();
+//        return (new Scanner(System.in)).nextLine();
+
+        System.out.println("1+2i");
+        return "1+2i";
     }
 
     /**
@@ -46,7 +54,11 @@ public class ConsoleOutputInput {
             7 - вывести в тригонометрическом виде
             8 - вывести в алгебраическом виде
             """);
-        int n = (new Scanner(System.in)).nextInt();
+//        int n = (new Scanner(System.in)).nextInt();
+
+        int n = 8;
+        System.out.println(8);
+
         System.out.println("Результат:");
         switch (n) {
             case (1) -> System.out.println(new ComplexNumber(number.getReal()).algebraicForm());
